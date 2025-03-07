@@ -148,3 +148,25 @@ section ul li {
 .card a {
   margin-top: 10px;
 }
+
+/******* Media Queries ***************/
+
+@media (min-width: 500px) {
+  body {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url("/images/site/small_check_2.png");
+  }
+
+  #wrapper {
+    border: 5px solid rgb(76, 150, 215);
+    border-radius: 10px;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
