@@ -4,3 +4,142 @@
 *:after {
   box-sizing: border-box;
 }
+
+/******* Fonts ***************/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+/******* General ***************/
+#top-header, p, li, a, footer {
+  font-family: Lato, sans-serif;
+}
+
+h1, h2 {
+  font-family: Cambria, serif;
+}
+
+/******* Header ***************/
+#top-header {
+  display: flex;
+  padding-top: 20px;
+}
+
+.siteName a {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+#tools a, .siteName a {
+  text-decoration: none;
+  color: black;
+}
+
+#tools {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/******* Navigation ***************/
+
+nav ul li {
+list-style-type: none;
+background-color: black;
+padding: 10px 10px;
+}
+
+nav li:hover {
+  background-color: rgb(64, 64, 64);
+  cursor: pointer;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  background-color: black;
+}
+
+/******* Main ***************/
+
+/******* Title ***************/
+h1 {
+  font-size: 1.5em;
+}
+
+/******* Banner ***************/
+.banner {
+  position: relative;
+  width: 320px;
+  margin: 0 auto;
+  margin-bottom: 45px;
+}
+
+.delorean {
+  display: block;
+  margin: 0 auto;
+}
+
+.banner section {
+  position: absolute;
+  width: 164px;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.864);
+}
+
+.banner section h2, .banner section p {
+  margin: 0;
+  color: rgb(76, 150, 215);
+}
+
+.own {
+  width: 70%;
+  display: block;
+  margin: 5px auto;
+}
+
+/******* Reviews ***************/
+.sectionCard {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+section ul {
+  padding-left: 20px;
+  font-size: 0.91em;
+}
+
+section ul li {
+  margin-bottom: 10px;
+}
+
+/******* Upgrades ***************/
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 45%;
+  height: 125px;
+  margin: 5px;
+}
+
+.card img {
+  height: 65px;
+}
+
+.card .imgContainer {
+  border: 2px black solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  background-color: rgb(76, 150, 215);
+}
+
+.card a {
+  margin-top: 10px;
+}
