@@ -123,14 +123,19 @@ section ul li {
 }
 
 /******* Upgrades ***************/
+#upgradesGrid {
+  display: grid;
+  grid-template-columns: 160px 160px;
+  gap: 5px;
+}
+
 .card {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 45%;
+  width: 95%;
   height: 125px;
-  margin: 5px;
 }
 
 .card img {
@@ -157,7 +162,7 @@ section ul li {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-image: url("/images/site/small_check_2.png");
+    background-image: url("/images/site/checkerboard.jpg");
   }
 
   #wrapper {
@@ -168,5 +173,25 @@ section ul li {
     padding-right: 10px;
     margin-top: 8px;
     margin-bottom: 8px;
+  }
+}
+
+@media (min-width: 750px) {
+
+  #wrapper {
+    min-width: 730px;
+  }
+
+  nav ul li a {
+    font-size: 1.4em;
+  }
+
+  .banner {
+    width: 500px;
+  }
+
+  #flexCards {
+    display: flex;
+    flex-direction: row-reverse;
   }
 }
