@@ -109,7 +109,7 @@ h1 {
 
 /******* Reviews ***************/
 .sectionCard {
-  max-width: 320px;
+  min-width: 320px;
   margin: 0 auto;
 }
 
@@ -190,8 +190,24 @@ section ul li {
     width: 500px;
   }
 
+  .banner section {
+    width: 200px;
+  }
+
+  .banner section h2 {
+    font-size: 1.8em;
+  }
+
+  .banner section p {
+    font-size: 1.2em;
+  }
+
   #flexCards {
     display: flex;
     flex-direction: row-reverse;
+  }
+
+  section ul {
+    font-size: 1em;
   }
 }
