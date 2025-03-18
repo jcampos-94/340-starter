@@ -27,10 +27,9 @@ Util.getNav = async function (req, res, next) {
 /* **************************************
  * Build the classification view HTML
  * ************************************ */
-
 Util.buildClassificationGrid = async function (data) {
   let grid;
-  if (data.lenght > 0) {
+  if (data.length > 0) {
     grid = '<ul id="inv-display">';
     data.forEach((vehicle) => {
       grid += "<li>";
@@ -41,7 +40,7 @@ Util.buildClassificationGrid = async function (data) {
         vehicle.inv_make +
         " " +
         vehicle.inv_model +
-        'detais"><img src="' +
+        'details"><img src="' +
         vehicle.inv_thumbnail +
         '" alt="Image of ' +
         vehicle.inv_make +
@@ -54,7 +53,7 @@ Util.buildClassificationGrid = async function (data) {
       grid +=
         '<a href="../../inv/detail/' +
         vehicle.inv_id +
-        '"title=View ' +
+        '" title="View ' +
         vehicle.inv_make +
         " " +
         vehicle.inv_model +
