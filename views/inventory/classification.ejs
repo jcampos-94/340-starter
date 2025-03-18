@@ -1,18 +1,12 @@
-<!-- *************************************
-* Build The Content Heading
-* ************************************ -->
+<%# Build The Content Heading %>
 <% if (title) { %>
 <h1><%= title %></h1>
 <% } else {
   res.redirect('/')
 } %>
 
-<!-- *************************************
-* Show A Message Block
-* ************************************ -->
+<%# Show A Message Block %>
 <%# messages() %>
 
-<!-- *************************************
-* Build The Inventory Items Display
-* ************************************ -->
+<%# Build The Inventory Items Display %>
 <%- grid %>
