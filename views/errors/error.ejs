@@ -5,8 +5,7 @@
   res.redirect('/')
 } %>
 
-<%# Show A Message Block %>
-<%# messages() %>
-
-<%# Build The Inventory Items Display %>
-<%- grid %>
+<%# Show The Error Message %>
+<% if (message) { %>
+  <p><%- message %></p>
+<% } %>
