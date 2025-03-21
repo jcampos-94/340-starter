@@ -1,0 +1,9 @@
+<%# Build The Content Heading %>
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+<%# Build The Details Display %>
+<%- box %>

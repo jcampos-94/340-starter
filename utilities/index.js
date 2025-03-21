@@ -46,9 +46,9 @@ Util.buildClassificationGrid = async function (data) {
         vehicle.inv_make +
         " " +
         vehicle.inv_model +
-        ' on CSE Motors" /></a>';
+        ' on CSE Motors"></a>';
       grid += '<div class="namePrice">';
-      grid += "<hr />";
+      grid += "<hr>";
       grid += "<h2>";
       grid +=
         '<a href="../../inv/detail/' +
@@ -75,6 +75,53 @@ Util.buildClassificationGrid = async function (data) {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
   return grid;
+};
+
+/* **************************************
+ * Build the detail view HTML
+ * ************************************ */
+Util.buildDetailBox = async function (data) {
+  let box;
+  if (data.length > 0) {
+    let vehicle = data[0];
+
+    //Ensure price and miles are numbers and give them the appropriate format
+    let formattedPrice = Number(vehicle.inv_price).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    let formattedMiles = Number(vehicle.inv_miles).toLocaleString("en-US");
+
+
+    box = '<div id="detail-box">';
+    box +=
+      '<div id="detail-image"><img src="' +
+      vehicle.inv_image +
+      '" alt="Image of ' +
+      vehicle.inv_make +
+      " " +
+      vehicle.inv_model +
+      ' on CSE Motors"></div>';
+    box +=
+      '<div id="general-details"><p><strong>' +
+      vehicle.inv_make +
+      " " +
+      vehicle.inv_model +
+      ' Details</strong></p>';
+    box += '<div class="gray-background"><p><strong>Price: ' +
+      formattedPrice +
+      '</strong></p></div>';
+    box += '<p><strong>Description:</strong> ' +
+      vehicle.inv_description +
+      '</p>';
+    box += '<div class="gray-background"><p><strong>Color:</strong> ' +
+      vehicle.inv_color +
+      '</p></div>';
+    box += '<p><strong>Miles:</strong> ' +
+      formattedMiles +
+      '</p>';
+    box += "</div></div>";
+  } else {
+    box += '<p class="notice">Sorry, the vehicle could be found.</p>';
+  }
+  return box;
 };
 
 /* ****************************************

@@ -215,7 +215,24 @@ section ul li {
   color: inherit;
 }
 
-/******* Media Queries ***************/
+/******* Details ***************/
+#detail-image img {
+  display: block;
+  max-width: 328px;
+  margin: 0 auto;
+}
+
+#general-details p {
+  font-size: 1.3em;
+  padding: 10px;
+}
+
+.gray-background {
+  background-color: lightgray;
+  padding: 1px;
+}
+
+/******* MEDIA QUERIES ***************/
 
 @media (min-width: 500px) {
   body {
@@ -235,12 +252,26 @@ section ul li {
     margin-top: 8px;
     margin-bottom: 8px;
   }
+
+  nav ul li a {
+    font-size: 0.95em;
+  }
+
+  /******* Details ***************/
+  #detail-image img {
+    max-width: 370px;
+  }
+
+  #general-details {
+    width: 370px;
+  }
 }
 
 @media (min-width: 750px) {
 
   #wrapper {
     min-width: 730px;
+    max-width: min-content;
   }
 
   nav ul li a {
@@ -270,5 +301,16 @@ section ul li {
 
   section ul {
     font-size: 1em;
+  }
+
+  /******* Details ***************/
+  #detail-box {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  #detail-image {
+    margin-top: 88px;
   }
 }
