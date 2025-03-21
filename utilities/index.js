@@ -86,8 +86,11 @@ Util.buildDetailBox = async function (data) {
     let vehicle = data[0];
 
     //Ensure price and miles are numbers and give them the appropriate format
-    let formattedPrice = Number(vehicle.inv_price).toLocaleString("en-US", { style: "currency", currency: "USD" });
-    let formattedMiles = Number(vehicle.inv_miles).toLocaleString("en-US");
+    let formattedPrice = '$' + new Intl.NumberFormat("en-US", { 
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2 
+    }).format(vehicle.inv_price);
+    let formattedMiles = new Intl.NumberFormat("en-US").format(vehicle.inv_miles);
 
 
     box = '<div id="detail-box">';
