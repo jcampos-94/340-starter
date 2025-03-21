@@ -37,4 +37,11 @@ invCont.buildByInventoryId = async function (req, res, next) {
   });
 };
 
+/* ***************************
+ *  Trigger an error for the Week 3 Task
+ * ************************** */
+invCont.errorTrigger = async function (req, res, next) {
+  nonExistentFunction(); //This will trigger the error
+}
+
 module.exports = invCont;
