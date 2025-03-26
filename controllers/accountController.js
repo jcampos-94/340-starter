@@ -13,4 +13,18 @@ async function buildLogin(req, res, next) {
     })
 }
 
-module.exports = { buildLogin }
+/* ****************************************
+*  Deliver registration view
+* *************************************** */
+async function buildRegister(req, res, next) {
+    let nav = await utilities.getNav();
+    const registerForm = await utilities.buildRegisterForm();
+    res.render("./account/register", {
+      title: "Register",
+      nav,
+      registerForm,
+      errors: null
+    })
+  }
+
+module.exports = { buildLogin, buildRegister }

@@ -132,13 +132,34 @@ Util.buildDetailBox = async function (data) {
 Util.buildLoginForm = async function () {
   let loginForm = '<form>';
   loginForm += '<label for="account_email">Email:</label>';
-  loginForm += '<input type="text" id="account_email" name="account_email"><br>';
+  loginForm += '<input type="email" id="account_email" name="account_email"><br>';
   loginForm += '<label for="account_password">Password:</label>';
   loginForm += '<input type="password" id="account_password" name="account_password"><br>';
   loginForm += '<input type="submit" id="submitButton" value="LOGIN">'
   loginForm += '</form>';
-  loginForm += '<p id="registrationLink">No account? <a href="/account/registration">Sign-up</a></p>';
+  loginForm += '<p id="registerLink">No account? <a href="/account/register">Sign-up</a></p>';
   return loginForm;
+}
+
+/* **************************************
+ * Build the register view HTML
+ * ************************************ */
+Util.buildRegisterForm = async function () {
+  let registerForm = '<form>';
+  registerForm += '<label for="account_firstname">First Name:</label>';
+  registerForm += '<input type="text" id="account_firstname" name="account_firstname" required><br>';
+  registerForm += '<label for="account_lastname">Last Name:</label>';
+  registerForm += '<input type="text" id="account_lastname" name="account_lastname" required><br>';
+  registerForm += '<label for="account_email">Email:</label>';
+  registerForm += '<input type="email" id="account_email" name="account_email" required><br>';
+  registerForm += '<label for="account_password">Password:</label>';
+  registerForm += '<input type="password" id="account_password" name="account_password"' +
+    ' pattern="^(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{12,}$" ' +
+    ' title="Must be at least 12 characters long and include at least 1 uppercase letter, 1 number, and 1 special character."' +
+    ' required><br>';
+  registerForm += '<input type="submit" id="submitButton" value="REGISTER">'
+  registerForm += '</form>'; 
+  return registerForm;
 }
 
 /* ****************************************

@@ -253,14 +253,14 @@ input {
   outline: none;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=email]:focus, input[type=password]:focus {
   border: 2px solid rgb(76, 150, 215);
 }
 
 #submitButton {
   max-width: fit-content;
   margin: 0 auto;
-  padding: 6px 20px;
+  padding: 10px 20px;
   border: none;
   background: black;
   color: white;
@@ -271,16 +271,16 @@ input[type=text]:focus, input[type=password]:focus {
   background: rgb(76, 150, 215);
 }
 
-#registrationLink {
+#registerLink {
   text-align: center;
 }
 
-#registrationLink a {
+#registerLink a {
   color: rgb(53, 117, 173);
   font-weight: bold;
 }
 
-#registrationLink a:hover {
+#registerLink a:hover {
   color: rgb(141, 76, 215);
 }
 

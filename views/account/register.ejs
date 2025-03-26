@@ -1,0 +1,12 @@
+<%# Build The Content Heading %>
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+<%# Message Display %>
+<%- messages() %>
+
+<%# Build The Details Display %>
+<%- registerForm %>
