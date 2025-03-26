@@ -58,6 +58,7 @@ async function registerAccount(req, res) {
       title: "Login",
       nav,
       loginForm,
+      errors: null,
     });
   } else {
     req.flash("notice", "Sorry, the registration failed.");
@@ -65,6 +66,7 @@ async function registerAccount(req, res) {
       title: "Registration",
       nav,
       registerForm,
+      errors: null,
     });
   }
 }

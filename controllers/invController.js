@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    errors: null,
   });
 };
 
@@ -34,6 +35,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: year + " " + make + " " + model,
     nav,
     box,
+    errors: null,
   });
 };
 
@@ -42,6 +44,6 @@ invCont.buildByInventoryId = async function (req, res, next) {
  * ************************** */
 invCont.errorTrigger = async function (req, res, next) {
   nonExistentFunction(); //This will trigger the error
-}
+};
 
 module.exports = invCont;
