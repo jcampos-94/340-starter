@@ -132,9 +132,12 @@ Util.buildDetailBox = async function (data) {
 Util.buildLoginForm = async function () {
   let loginForm = '<form>';
   loginForm += '<label for="account_email">Email:</label>';
-  loginForm += '<input type="email" id="account_email" name="account_email"><br>';
+  loginForm += '<input type="email" id="account_email" name="account_email" required><br>';
   loginForm += '<label for="account_password">Password:</label>';
-  loginForm += '<input type="password" id="account_password" name="account_password"><br>';
+  loginForm += '<input type="password" id="account_password" name="account_password"' +
+    ' pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$" ' +
+    ' required>' +
+    '<div>Password must be at least 12 characters and include at least 1 capital and lowercase letter, 1 number, and 1 special character.</div><br>';
   loginForm += '<input type="submit" id="submitButton" value="LOGIN">'
   loginForm += '</form>';
   loginForm += '<p id="registerLink">No account? <a href="/account/register">Sign-up</a></p>';
@@ -154,9 +157,9 @@ Util.buildRegisterForm = async function () {
   registerForm += '<input type="email" id="account_email" name="account_email" required><br>';
   registerForm += '<label for="account_password">Password:</label>';
   registerForm += '<input type="password" id="account_password" name="account_password"' +
-    ' pattern="^(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{12,}$" ' +
-    ' title="Must be at least 12 characters long and include at least 1 uppercase letter, 1 number, and 1 special character."' +
-    ' required><br>';
+    ' pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$" ' +
+    ' required>' +
+    '<div>Password must be at least 12 characters and include at least 1 capital and lowercase letter, 1 number, and 1 special character.</div><br>';
   registerForm += '<input type="submit" id="submitButton" value="REGISTER">'
   registerForm += '</form>'; 
   return registerForm;
