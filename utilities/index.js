@@ -145,7 +145,7 @@ Util.buildLoginForm = async function () {
  * Build the register view HTML
  * ************************************ */
 Util.buildRegisterForm = async function () {
-  let registerForm = '<form>';
+  let registerForm = '<form action="/account/register" method="post">';
   registerForm += '<label for="account_firstname">First Name:</label>';
   registerForm += '<input type="text" id="account_firstname" name="account_firstname" required><br>';
   registerForm += '<label for="account_lastname">Last Name:</label>';

@@ -367,7 +367,7 @@ input[type=email]:focus, input[type=password]:focus {
   }
 
   /******* Account Forms ***************/
-  #registrationLink {
+  #registerLink {
     font-size: 1.2em;
   }
 }
