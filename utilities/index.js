@@ -92,7 +92,6 @@ Util.buildDetailBox = async function (data) {
     }).format(vehicle.inv_price);
     let formattedMiles = new Intl.NumberFormat("en-US").format(vehicle.inv_miles);
 
-
     box = '<div id="detail-box">';
     box +=
       '<div id="detail-image"><img src="' +
@@ -126,6 +125,21 @@ Util.buildDetailBox = async function (data) {
   }
   return box;
 };
+
+/* **************************************
+ * Build the login view HTML
+ * ************************************ */
+Util.buildLoginForm = async function () {
+  let loginForm = '<form>';
+  loginForm += '<label for="account_email">Email:</label>';
+  loginForm += '<input type="text" id="account_email" name="account_email"><br>';
+  loginForm += '<label for="account_password">Password:</label>';
+  loginForm += '<input type="password" id="account_password" name="account_password"><br>';
+  loginForm += '<input type="submit" id="submitButton" value="LOGIN">'
+  loginForm += '</form>';
+  loginForm += '<p id="registrationLink">No account? <a href="/account/registration">Sign-up</a></p>';
+  return loginForm;
+}
 
 /* ****************************************
  * Middleware For Handling Errors
