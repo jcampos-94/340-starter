@@ -126,45 +126,6 @@ Util.buildDetailBox = async function (data) {
   return box;
 };
 
-/* **************************************
- * Build the login view HTML
- * ************************************ */
-Util.buildLoginForm = async function () {
-  let loginForm = '<form>';
-  loginForm += '<label for="account_email">Email:</label>';
-  loginForm += '<input type="email" id="account_email" name="account_email" required><br>';
-  loginForm += '<label for="account_password">Password:</label>';
-  loginForm += '<input type="password" id="account_password" name="account_password"' +
-    ' pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$" ' +
-    ' required>' +
-    '<div>Password must be at least 12 characters and include at least 1 capital and lowercase letter, 1 number, and 1 special character.</div><br>';
-  loginForm += '<input type="submit" id="submitButton" value="LOGIN">'
-  loginForm += '</form>';
-  loginForm += '<p id="registerLink">No account? <a href="/account/register">Sign-up</a></p>';
-  return loginForm;
-}
-
-/* **************************************
- * Build the register view HTML
- * ************************************ */
-Util.buildRegisterForm = async function () {
-  let registerForm = '<form action="/account/register" method="post">';
-  registerForm += '<label for="account_firstname">First Name:</label>';
-  registerForm += '<input type="text" id="account_firstname" name="account_firstname" required><br>';
-  registerForm += '<label for="account_lastname">Last Name:</label>';
-  registerForm += '<input type="text" id="account_lastname" name="account_lastname" required><br>';
-  registerForm += '<label for="account_email">Email:</label>';
-  registerForm += '<input type="email" id="account_email" name="account_email" required><br>';
-  registerForm += '<label for="account_password">Password:</label>';
-  registerForm += '<input type="password" id="account_password" name="account_password"' +
-    ' pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$" ' +
-    ' required>' +
-    '<div>Password must be at least 12 characters and include at least 1 capital and lowercase letter, 1 number, and 1 special character.</div><br>';
-  registerForm += '<input type="submit" id="submitButton" value="REGISTER">'
-  registerForm += '</form>'; 
-  return registerForm;
-}
-
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

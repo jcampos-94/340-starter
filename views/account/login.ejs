@@ -1,12 +1,44 @@
 <%# Build The Content Heading %>
 <% if (title) { %>
-    <h1><%= title %></h1>
-  <% } else {
-    res.redirect('/')
-  } %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
 
 <%# Message Display %>
 <%- messages() %>
 
-<%# Build The Details Display %>
-<%- loginForm %>
+<%# Errors Display %>
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <%
+} %>
+
+<%# Login Form %>
+<form id="loginForm" action="/account/login" method="post">
+  <label for="account_email">Email:</label>
+  <input
+    type="email"
+    id="account_email"
+    name="account_email"
+    required><br>
+  <label for="account_password">Password:</label>
+  <input
+    type="password"
+    id="account_password"
+    name="account_password"
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    required
+ >
+  <div>
+    Password must be at least 12 characters and include at least 1 capital and
+    lowercase letter, 1 number, and 1 special character.
+  </div>
+  <br>
+  <input type="submit" id="submitButton" value="LOGIN">
+</form>
+<p id="registerLink">No account? <a href="/account/register">Sign-up</a></p>

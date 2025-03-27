@@ -6,11 +6,10 @@ const accountModel = require("../models/account-model");
  * *************************************** */
 async function buildLogin(req, res, next) {
   let nav = await utilities.getNav();
-  const loginForm = await utilities.buildLoginForm();
   res.render("./account/login", {
     title: "Login",
     nav,
-    loginForm,
+    errors: null,
   });
 }
 
@@ -19,11 +18,9 @@ async function buildLogin(req, res, next) {
  * *************************************** */
 async function buildRegister(req, res, next) {
   let nav = await utilities.getNav();
-  const registerForm = await utilities.buildRegisterForm();
   res.render("./account/register", {
     title: "Register",
     nav,
-    registerForm,
     errors: null,
   });
 }
@@ -33,8 +30,6 @@ async function buildRegister(req, res, next) {
  * *************************************** */
 async function registerAccount(req, res) {
   let nav = await utilities.getNav();
-  const loginForm = await utilities.buildLoginForm();
-  const registerForm = await utilities.buildRegisterForm();
   const {
     account_firstname,
     account_lastname,
@@ -57,7 +52,6 @@ async function registerAccount(req, res) {
     res.status(201).render("account/login", {
       title: "Login",
       nav,
-      loginForm,
       errors: null,
     });
   } else {
@@ -65,7 +59,6 @@ async function registerAccount(req, res) {
     res.status(501).render("account/register", {
       title: "Registration",
       nav,
-      registerForm,
       errors: null,
     });
   }
