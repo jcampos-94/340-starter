@@ -1,0 +1,15 @@
+<%# Build The Content Heading %>
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%# Show A Message Block %>
+<%- messages() %>
+
+<%# Link to the "add new classification" view %>
+<a class="mgtAddLink" href="../inv/add-classification">Add new classification</a>
+
+<%# Link to the "add new inventory" view %>
+<a class="mgtAddLink" href="../inv/add-inventory">Add new vehicle</a>

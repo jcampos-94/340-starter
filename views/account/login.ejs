@@ -12,8 +12,8 @@
 <% if (errors) { %>
   <ul class="notice">
   <% errors.array().forEach(error => { %>
-  <li><%= error.msg %></li>
-  <%  }) %>
+    <li><%= error.msg %></li>
+    <%  }) %>
   </ul>
   <%
 } %>
@@ -25,6 +25,7 @@
     type="email"
     id="account_email"
     name="account_email"
+    value="<%= locals.account_email %>"
     required><br>
   <label for="account_password">Password:</label>
   <input

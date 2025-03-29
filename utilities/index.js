@@ -86,11 +86,15 @@ Util.buildDetailBox = async function (data) {
     let vehicle = data[0];
 
     //Ensure price and miles are numbers and give them the appropriate format
-    let formattedPrice = '$' + new Intl.NumberFormat("en-US", { 
-      minimumFractionDigits: 0, 
-      maximumFractionDigits: 2 
-    }).format(vehicle.inv_price);
-    let formattedMiles = new Intl.NumberFormat("en-US").format(vehicle.inv_miles);
+    let formattedPrice =
+      "$" +
+      new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+      }).format(vehicle.inv_price);
+    let formattedMiles = new Intl.NumberFormat("en-US").format(
+      vehicle.inv_miles
+    );
 
     box = '<div id="detail-box">';
     box +=
@@ -106,24 +110,46 @@ Util.buildDetailBox = async function (data) {
       vehicle.inv_make +
       " " +
       vehicle.inv_model +
-      ' Details</strong></p>';
-    box += '<div class="gray-background"><p><strong>Price: ' +
+      " Details</strong></p>";
+    box +=
+      '<div class="gray-background"><p><strong>Price: ' +
       formattedPrice +
-      '</strong></p></div>';
-    box += '<p><strong>Description:</strong> ' +
-      vehicle.inv_description +
-      '</p>';
-    box += '<div class="gray-background"><p><strong>Color:</strong> ' +
+      "</strong></p></div>";
+    box +=
+      "<p><strong>Description:</strong> " + vehicle.inv_description + "</p>";
+    box +=
+      '<div class="gray-background"><p><strong>Color:</strong> ' +
       vehicle.inv_color +
-      '</p></div>';
-    box += '<p><strong>Miles:</strong> ' +
-      formattedMiles +
-      '</p>';
+      "</p></div>";
+    box += "<p><strong>Miles:</strong> " + formattedMiles + "</p>";
     box += "</div></div>";
   } else {
     box += '<p class="notice">Sorry, the vehicle could be found.</p>';
   }
   return box;
+};
+
+/* **************************************
+ * Build the detail drop-down selection
+ * ************************************ */
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications();
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>';
+  classificationList +=
+    "<option value='' selected disabled>Choose a Classification</option>";
+  data.rows.forEach((row) => {
+    classificationList += '<option value="' + row.classification_id + '"';
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected ";
+    }
+    classificationList += ">" + row.classification_name + "</option>";
+  });
+  classificationList += "</select>";
+  return classificationList;
 };
 
 /* ****************************************
