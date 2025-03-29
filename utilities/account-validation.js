@@ -12,7 +12,6 @@ validate.registrationRules = () => {
     body("account_firstname")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min: 1 })
       .withMessage("Please provide a first name."), // on error this message is sent.
 
@@ -20,7 +19,6 @@ validate.registrationRules = () => {
     body("account_lastname")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min: 2 })
       .withMessage("Please provide a last name."), // on error this message is sent.
 
@@ -28,21 +26,19 @@ validate.registrationRules = () => {
     body("account_email")
       .trim()
       .escape()
-      .notEmpty()
       .isEmail()
       .normalizeEmail()
       .withMessage("A valid email is required.")
       .custom(async (account_email) => {
         const emailExists = await accountModel.checkExistingEmail(account_email)
         if (emailExists) {
-          throw new Error("Email exists. Please log in or use different email.")
+          throw new Error("Email already registered. Please log in or use different email.")
         }
       }),
 
     // password is required and must be strong password
     body("account_password")
       .trim()
-      .notEmpty()
       .isStrongPassword({
         minLength: 12,
         minLowercase: 1,
@@ -85,7 +81,6 @@ validate.loginRules = () => {
     body("account_email")
       .trim()
       .escape()
-      .notEmpty()
       .isEmail()
       .normalizeEmail()
       .withMessage("A valid email is required."),
@@ -93,7 +88,6 @@ validate.loginRules = () => {
     // password is required and must be strong password
     body("account_password")
       .trim()
-      .notEmpty()
       .isStrongPassword({
         minLength: 12,
         minLowercase: 1,

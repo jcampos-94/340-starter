@@ -29,6 +29,11 @@ h1, h2 {
   font-family: Cambria, serif;
 }
 
+.notice {
+  color: rgb(174, 13, 13);
+  font-weight: bold;
+}
+
 /******* Header ***************/
 #top-header {
   display: flex;

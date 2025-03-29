@@ -12,7 +12,6 @@ validate.addNewClassRules = () => {
     body("classification_name")
       .trim()
       .escape()
-      .notEmpty()
       .isAlphanumeric()
       .withMessage("A valid name is required."),
   ];
