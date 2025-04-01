@@ -8,6 +8,14 @@ const dataValidate = require("../utilities/account-validation");
 // Route to build the login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
+// Process the login attempt
+router.post(
+  "/login",
+  dataValidate.loginRules(),
+  dataValidate.checkLogData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
 // Route to build the register view
 router.get(
   "/register",
@@ -22,13 +30,7 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
-// Process the login attempt
-router.post(
-  "/login",
-  dataValidate.loginRules(),
-  dataValidate.checkLogData,
-  (req, res) => {
-  res.status(200).send("login process");
-});
+// Route to build the account management view
+router.get("/", utilities.handleErrors(accountController.buildAccount));
 
 module.exports = router;
