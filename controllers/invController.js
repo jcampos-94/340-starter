@@ -178,7 +178,9 @@ invCont.buildEditInv = async function (req, res, next) {
   const inv_id = parseInt(req.params.inventory_id);
   let nav = await utilities.getNav();
   const vehicleData = await invModel.getDetailsByInventoryId(inv_id);
-  let classificationList = await utilities.buildClassificationList(vehicleData[0].classification_id);
+  let classificationList = await utilities.buildClassificationList(
+    vehicleData[0].classification_id
+  );
   const vehicleName = `${vehicleData[0].inv_make} ${vehicleData[0].inv_model}`;
   res.render("./inventory/edit-inventory", {
     title: "Edit " + vehicleName,
@@ -197,6 +199,67 @@ invCont.buildEditInv = async function (req, res, next) {
     inv_color: vehicleData[0].inv_color,
     classification_id: vehicleData[0].classification_id,
   });
+};
+
+/* ****************************************
+ *  Process Edit Inventory
+ * *************************************** */
+invCont.updateInventory = async function (req, res) {
+  let nav = await utilities.getNav();
+  const {
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+    inv_id
+  } = req.body;
+  const updateResult = await invModel.updateInventory(
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+    inv_id
+  );
+
+  if (updateResult) {
+    req.flash(
+      "notice",
+      `The ${inv_make} ${inv_model} was successfully updated.`
+    );
+    res.redirect("/inv/");
+  } else {
+    let classificationList = await utilities.buildClassificationList();
+    req.flash("notice", "Sorry, the insert failed. Please, try again.");
+    res.status(501).render("inventory/edit-inventory", {
+      title: `Edit ${inv_make} ${inv_model}`,
+      nav,
+      classificationList,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    });
+  }
 };
 
 /* ***************************

@@ -37,8 +37,15 @@ router.post(
 // Route to get inventory
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
-// Route to build the edit view
+// Route to build the edit inventory view
 router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildEditInv));
+
+// Route to psot the edit inventory form
+router.post(
+  "/update",
+  dataValidate.addNewInvRules(),
+  dataValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory));
 
 // Route for the error task (intentional error)
 router.get("/errortrigger", utilities.handleErrors(invController.errorTrigger));
