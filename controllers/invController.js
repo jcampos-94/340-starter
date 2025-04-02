@@ -263,6 +263,56 @@ invCont.updateInventory = async function (req, res) {
 };
 
 /* ***************************
+ *  Build the delete view
+ * ************************** */
+invCont.buildDeleteInv = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id);
+  let nav = await utilities.getNav();
+  const vehicleData = await invModel.getDetailsByInventoryId(inv_id);
+  const vehicleName = `${vehicleData[0].inv_make} ${vehicleData[0].inv_model}`;
+  res.render("./inventory/delete-confirm", {
+    title: "Delete " + vehicleName,
+    nav,
+    errors: null,
+    inv_id: vehicleData[0].inv_id,
+    inv_make: vehicleData[0].inv_make,
+    inv_model: vehicleData[0].inv_model,
+    inv_year: vehicleData[0].inv_year,
+    inv_price: vehicleData[0].inv_price,
+  });
+};
+
+/* ****************************************
+ *  Process Delete
+ * *************************************** */
+invCont.deleteInventory = async function (req, res) {
+  let nav = await utilities.getNav();
+  // const { inv_id } = parseInt(req.body);
+  const { inv_id, inv_make, inv_model, inv_year, inv_price } = req.body;
+  const deleteResult = await invModel.deleteInventory(inv_id);
+
+  if (deleteResult) {
+    req.flash(
+      "notice",
+      `The ${inv_make} ${inv_model} was successfully deleted.`
+    );
+    res.redirect("/inv/");
+  } else {
+    req.flash("notice", "Sorry, the deletion failed. Please, try again.");
+    res.status(501).render("inventory/delete-confirm", {
+      title: `Edit ${inv_make} ${inv_model}`,
+      nav,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_price,
+    });
+  }
+};
+
+/* ***************************
  *  Trigger an error for the Week 3 Task
  * ************************** */
 invCont.errorTrigger = async function (req, res, next) {

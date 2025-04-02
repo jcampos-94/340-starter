@@ -40,12 +40,20 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to build the edit inventory view
 router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildEditInv));
 
-// Route to psot the edit inventory form
+// Route to post the edit inventory form
 router.post(
   "/update",
   dataValidate.addNewInvRules(),
   dataValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory));
+
+// Route to build the delete view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInv));
+
+// Route to post the delete form
+router.post(
+  "/deleteVehicle",
+  utilities.handleErrors(invController.deleteInventory));
 
 // Route for the error task (intentional error)
 router.get("/errortrigger", utilities.handleErrors(invController.errorTrigger));
