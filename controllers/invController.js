@@ -240,7 +240,7 @@ invCont.updateInventory = async function (req, res) {
     );
     res.redirect("/inv/");
   } else {
-    let classificationList = await utilities.buildClassificationList();
+    let classificationList = await utilities.buildClassificationList(classification_id);
     req.flash("notice", "Sorry, the insert failed. Please, try again.");
     res.status(501).render("inventory/edit-inventory", {
       title: `Edit ${inv_make} ${inv_model}`,
