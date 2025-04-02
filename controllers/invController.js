@@ -172,6 +172,34 @@ invCont.getInventoryJSON = async (req, res, next) => {
 };
 
 /* ***************************
+ *  Build the edit inventory view
+ * ************************** */
+invCont.buildEditInv = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inventory_id);
+  let nav = await utilities.getNav();
+  const vehicleData = await invModel.getDetailsByInventoryId(inv_id);
+  let classificationList = await utilities.buildClassificationList(vehicleData[0].classification_id);
+  const vehicleName = `${vehicleData[0].inv_make} ${vehicleData[0].inv_model}`;
+  res.render("./inventory/edit-inventory", {
+    title: "Edit " + vehicleName,
+    nav,
+    classificationList,
+    errors: null,
+    inv_id: vehicleData[0].inv_id,
+    inv_make: vehicleData[0].inv_make,
+    inv_model: vehicleData[0].inv_model,
+    inv_year: vehicleData[0].inv_year,
+    inv_description: vehicleData[0].inv_description,
+    inv_image: vehicleData[0].inv_image,
+    inv_thumbnail: vehicleData[0].inv_thumbnail,
+    inv_price: vehicleData[0].inv_price,
+    inv_miles: vehicleData[0].inv_miles,
+    inv_color: vehicleData[0].inv_color,
+    classification_id: vehicleData[0].classification_id,
+  });
+};
+
+/* ***************************
  *  Trigger an error for the Week 3 Task
  * ************************** */
 invCont.errorTrigger = async function (req, res, next) {
