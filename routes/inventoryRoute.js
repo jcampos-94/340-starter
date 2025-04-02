@@ -34,6 +34,9 @@ router.post(
   dataValidate.checkInvData,
   utilities.handleErrors(invController.addNewInv));
 
+// Route to build the get inventory view
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
 // Route for the error task (intentional error)
 router.get("/errortrigger", utilities.handleErrors(invController.errorTrigger));
 

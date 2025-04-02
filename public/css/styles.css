@@ -246,7 +246,7 @@ form {
   margin-top: 70px;
 }
 
-label, input, select,textarea {
+label, input, select, textarea {
   font-family: Lato, sans-serif ;
   font-size: 1.2em;
 }
@@ -320,6 +320,21 @@ form div {
   margin-bottom: 10px;
 }
 
+/******* Tables ***************/
+#inventoryDisplay {
+  font-family: Lato, sans-serif;
+  margin-top: 20px;
+}
+
+#inventoryDisplay th {
+  width: 230px;
+}
+
+#inventoryDisplay td {
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
 /******* MEDIA QUERIES ***************/
 
 @media (min-width: 500px) {
@@ -356,6 +371,11 @@ form div {
 }
 
 @media (min-width: 750px) {
+
+  /******* General ***************/
+  p {
+    font-size: 1.2em;
+  }
 
   #wrapper {
     min-width: 730px;
@@ -411,5 +431,18 @@ form div {
   /******* Management ***************/
   .mgtAddLink {
     font-size: 1.2em;
+  }
+
+  /******* Tables ***************/
+  #inventoryDisplay {
+    font-size: 1.2em;
+  }
+
+  #inventoryDisplay th {
+    width: 300px;
+  }
+
+  #inventoryDisplay td {
+    padding-left: 20px;
   }
 }
