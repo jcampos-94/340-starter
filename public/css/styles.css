@@ -51,8 +51,15 @@ h1, h2 {
 }
 
 #tools {
+  display: flex;
+  flex-direction: column;
   margin-right: 0;
   margin-left: auto;
+}
+
+#logoutLink {
+  margin-top: 10px;
+  margin-left: 67px;
 }
 
 /******* Navigation ***************/
