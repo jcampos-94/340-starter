@@ -100,7 +100,7 @@ validate.loginRules = () => {
 }
 
 /* ******************************
- * Check data and return errors or continue to login
+ * Check login data and return errors or continue to login
  * ***************************** */
 validate.checkLogData = async (req, res, next) => {
   const { account_email } = req.body;
@@ -117,6 +117,21 @@ validate.checkLogData = async (req, res, next) => {
     return;
   }
   next();
+};
+
+/* ****************************************
+ *  Check Employee or Admin
+ * ************************************ */
+validate.checkEmployeeOrAdmin = (allowedRoles) => {
+  return (req, res, next) => {
+    const userRole = res.locals.accountData.account_type;
+    if (allowedRoles.includes(userRole)) {
+      next();
+    } else {
+      req.flash("notice", "Only Employees or Managers can access this resource.");
+      return res.redirect("/account/login");
+    }
+  };
 };
 
 module.exports = validate;
