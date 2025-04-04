@@ -33,13 +33,12 @@
     id="account_password"
     name="account_password"
     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
-    required
- >
+    required>
   <div>
     Password must be at least 12 characters and include at least 1 capital and
     lowercase letter, 1 number, and 1 special character.
   </div>
   <br>
-  <input type="submit" id="submitButton" value="LOGIN">
+  <input type="submit" class="submitButton" value="LOGIN">
 </form>
 <p id="registerLink">No account? <a href="/account/register">Sign-up</a></p>

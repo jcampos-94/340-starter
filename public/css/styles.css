@@ -252,15 +252,22 @@ form {
   margin-top: 70px;
 }
 
-label, input, select, textarea {
+legend, label, input, select, textarea {
   font-family: Lato, sans-serif ;
   font-size: 1.2em;
 }
 
 input, select, textarea {
   padding: 6px;
+}
+
+fieldset, input, select, textarea {
   border: 2px solid;
   border-radius: 9px;
+}
+
+legend {
+  margin-bottom: 10px;
 }
 
 input, textarea {
@@ -284,7 +291,7 @@ textarea {
   overflow: auto;
 }
 
-#submitButton {
+.submitButton {
   max-width: fit-content;
   margin: 0 auto;
   padding: 10px 20px;
