@@ -92,7 +92,7 @@ async function addNewInv(
 }
 
 /* *****************************
- *   Add new inventory
+ *   Update inventory
  * *************************** */
 async function updateInventory(
   inv_make,

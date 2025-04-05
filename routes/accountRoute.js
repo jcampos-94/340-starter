@@ -36,4 +36,18 @@ router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.b
 // Route to build the account update view
 router.get("/update", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountUpdate));
 
+// Route to post the account update form
+router.post(
+  "/account-update",
+  dataValidate.updateAccountRules(),
+  dataValidate.checkAccountUpdateData,
+  utilities.handleErrors(accountController.updateAccount));
+
+// Route to post the password update form
+router.post(
+  "/password-update",
+  dataValidate.updatePasswordRules(),
+  dataValidate.checkPasswordUpdateData,
+  utilities.handleErrors(accountController.updatePassword));
+
 module.exports = router;

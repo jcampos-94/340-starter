@@ -43,9 +43,7 @@
   </fieldset>
   <br>
   <input type="submit" class="submitButton" value="UPDATE ACCOUNT">
-  <input type="hidden" name="account_id"
-  <% if(accountData.account_id) {%> value="<%= accountData.account_id %>"
-  <% } %>>
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
 </form>
 
 <form action="/account/password-update" method="post">
