@@ -50,4 +50,7 @@ router.post(
   dataValidate.checkPasswordUpdateData,
   utilities.handleErrors(accountController.updatePassword));
 
+// Route to process the logout
+router.get("/logout", utilities.handleErrors(accountController.logout));
+
 module.exports = router;

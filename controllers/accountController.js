@@ -274,4 +274,15 @@ async function updatePassword(req, res) {
   }
 };
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildAccountUpdate, updateAccount, updatePassword };
+/* ****************************************
+ *  Process the Logout
+ * *************************************** */
+async function logout(req, res) {
+  console.log("🔓 Logout controller reached");
+  res.clearCookie("jwt");
+  console.log("🔓 JWT deleted");
+  req.flash("notice", "You have been logged out.");
+  return res.redirect("/");
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildAccountUpdate, updateAccount, updatePassword, logout };
