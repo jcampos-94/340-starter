@@ -243,6 +243,20 @@ section ul li {
   padding: 1px;
 }
 
+#reviews ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#reviews li {
+  width: 340px;
+}
+
+.reviewContent {
+  margin-top: 5px;
+}
+
 /******* Forms ***************/
 form {
   display: flex;

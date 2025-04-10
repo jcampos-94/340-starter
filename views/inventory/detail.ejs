@@ -7,3 +7,22 @@
 
 <%# Build The Details Display %>
 <%- box %>
+
+<!-- Build The Reviews Display -->
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+
+  <% if (reviews && reviews.length > 0) { %>
+    <ul>
+      <% reviews.forEach(r => { %>
+        <li>
+          <strong><%= r.account_firstname %> <%= r.account_lastname %></strong>
+          <em>(<%= new Date(r.review_date).toLocaleString() %>)</em>
+          <p class="reviewContent"><%= r.review_content %></p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No reviews yet for this vehicle.</p>
+  <% } %>
+</section>

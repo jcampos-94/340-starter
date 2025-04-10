@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
+const reviewModel = require("../models/review-model");
 
 const invCont = {};
 
@@ -28,6 +29,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
   const data = await invModel.getDetailsByInventoryId(inv_id);
   const box = await utilities.buildDetailBox(data);
   let nav = await utilities.getNav();
+  const reviews = await reviewModel.getReviewsByInvId(inv_id); // Added to get the reviews
   const year = data[0].inv_year;
   const make = data[0].inv_make;
   const model = data[0].inv_model;
@@ -35,7 +37,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: year + " " + make + " " + model,
     nav,
     box,
-    errors: null,
+    reviews: reviews.rows,
   });
 };
 
@@ -217,7 +219,7 @@ invCont.updateInventory = async function (req, res) {
     inv_miles,
     inv_color,
     classification_id,
-    inv_id
+    inv_id,
   } = req.body;
   const updateResult = await invModel.updateInventory(
     inv_make,
@@ -240,7 +242,9 @@ invCont.updateInventory = async function (req, res) {
     );
     res.redirect("/inv/");
   } else {
-    let classificationList = await utilities.buildClassificationList(classification_id);
+    let classificationList = await utilities.buildClassificationList(
+      classification_id
+    );
     req.flash("notice", "Sorry, the insert failed. Please, try again.");
     res.status(501).render("inventory/edit-inventory", {
       title: `Edit ${inv_make} ${inv_model}`,
