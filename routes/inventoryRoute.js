@@ -2,6 +2,7 @@
 const express = require("express");
 const router = new express.Router();
 const invController = require("../controllers/invController");
+const reviewController = require("../controllers/reviewController");
 const utilities = require("../utilities"); //Required for error handling
 const dataValidate = require("../utilities/inventory-validation");
 const accountValidate = require("../utilities/account-validation");
@@ -58,5 +59,12 @@ router.post(
 
 // Route for the error task (intentional error)
 router.get("/errortrigger", utilities.handleErrors(invController.errorTrigger));
+
+// Route to post the submit review form
+router.post(
+  "/add-review",
+  dataValidate.submitReviewRules(),
+  dataValidate.checkReviewData,
+  utilities.handleErrors(reviewController.postReview));
 
 module.exports = router;

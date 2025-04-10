@@ -124,7 +124,7 @@ validate.checkLogData = async (req, res, next) => {
 };
 
 /* ****************************************
- *  Check Employee or Admin
+ *  Check Employee or Admin for site access
  * ************************************ */
 validate.checkEmployeeOrAdmin = (allowedRoles) => {
   return (req, res, next) => {

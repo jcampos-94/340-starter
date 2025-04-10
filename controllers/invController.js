@@ -37,6 +37,8 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: year + " " + make + " " + model,
     nav,
     box,
+    inv_id,
+    errors: null,
     reviews: reviews.rows,
   });
 };

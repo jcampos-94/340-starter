@@ -5,6 +5,18 @@
     res.redirect('/')
   } %>
 
+<%# Show A Message Block %>
+<%- messages() %>
+    
+<%# Errors Display %>
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <%# Build The Details Display %>
 <%- box %>
 
@@ -26,3 +38,16 @@
     <p>No reviews yet for this vehicle.</p>
   <% } %>
 </section>
+
+<!-- Build The Add Review Form -->
+<% if (loggedin && accountData.account_type == "Client") { %>
+  <section class="review-form">
+    <h2>Leave a Review</h2>
+    <form id="reviewForm" action="/inv/add-review" method="post">
+      <textarea name="review_content" value="<%= locals.review_content %>" required></textarea>
+      <br>
+      <input type="submit" class="submitButton" value="SUBMIT REVIEW">
+      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+    </form>
+  </section>
+<% } %>

@@ -344,6 +344,16 @@ form div {
   font-weight: bold;
 }
 
+/******* Review Forms ***************/
+#reviewForm {
+  margin-top: 0;
+}
+
+#reviewForm textarea {
+  height: 150px;
+}
+
+
 /******* Management ***************/
 .mgtAddLink {
   display: block;
