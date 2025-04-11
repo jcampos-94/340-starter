@@ -30,6 +30,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
   const box = await utilities.buildDetailBox(data);
   let nav = await utilities.getNav();
   const reviews = await reviewModel.getReviewsByInvId(inv_id); // Added to get the reviews
+  const hasReviewed = await reviewModel.hasUserReviewed(inv_id, res.locals.accountData.account_id);
   const year = data[0].inv_year;
   const make = data[0].inv_make;
   const model = data[0].inv_model;
@@ -40,6 +41,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     inv_id,
     errors: null,
     reviews: reviews.rows,
+    hasReviewed,
   });
 };
 

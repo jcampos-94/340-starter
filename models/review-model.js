@@ -27,4 +27,15 @@ async function addReview(inv_id, account_id, review_content) {
   }
 }
 
-module.exports = { getReviewsByInvId, addReview };
+/* ***************************
+ *  Check if User Review already exists
+ * ************************** */
+async function hasUserReviewed(inv_id, account_id) {
+  const result = await pool.query(
+    "SELECT review_id FROM review WHERE inv_id = $1 AND account_id = $2",
+    [inv_id, account_id]
+  );
+  return result.rows.length > 0;
+}
+
+module.exports = { getReviewsByInvId, addReview, hasUserReviewed };

@@ -40,7 +40,7 @@
 </section>
 
 <!-- Build The Add Review Form -->
-<% if (loggedin && accountData.account_type == "Client") { %>
+<% if (loggedin && accountData.account_type == "Client" && !hasReviewed) { %>
   <section class="review-form">
     <h2>Leave a Review</h2>
     <form id="reviewForm" action="/inv/add-review" method="post">
