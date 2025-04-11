@@ -178,6 +178,7 @@ Util.checkJWTToken = (req, res, next) => {
     );
   } else {
     res.locals.loggedin = 0; // Added to avoid errors when not logged in
+    res.locals.accountData = null; // Also added to avoid errors when not logged in
     next();
   }
 };

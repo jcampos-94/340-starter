@@ -4,7 +4,7 @@ const pool = require("../database/");
  *  Get all reviews by inv_id
  * ************************** */
 async function getReviewsByInvId(inv_id) {
-  const sql = `SELECT r.review_id, r.review_content, r.review_date, a.account_firstname, a.account_lastname
+  const sql = `SELECT r.review_id, r.review_content, r.review_date, a.account_id, a.account_firstname, a.account_lastname
       FROM review r
       JOIN account a ON r.account_id = a.account_id
       WHERE r.inv_id = $1
@@ -38,4 +38,20 @@ async function hasUserReviewed(inv_id, account_id) {
   return result.rows.length > 0;
 }
 
-module.exports = { getReviewsByInvId, addReview, hasUserReviewed };
+/* ***************************
+ *  Edit Review
+ * ************************** */
+async function updateReview(review_id, account_id, review_content) {
+  try {
+    const sql = `UPDATE review
+      SET review_content = $3, review_date = CURRENT_TIMESTAMP
+      WHERE review_id = $1 AND account_id = $2
+      RETURNING *;`;
+    const data = await pool.query(sql, [review_id, account_id, review_content]);
+    return data.rows[0];
+  } catch (error) {
+    throw new Error("Failed to edit review. Please try again.");
+  }
+}
+
+module.exports = { getReviewsByInvId, addReview, hasUserReviewed, updateReview };

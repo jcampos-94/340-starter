@@ -31,6 +31,20 @@
           <strong><%= r.account_firstname %> <%= r.account_lastname %></strong>
           <em>(<%= new Date(r.review_date).toLocaleString() %>)</em>
           <p class="reviewContent"><%= r.review_content %></p>
+
+          <% if (loggedin && accountData.account_type == "Client" && accountData.account_id == r.account_id) {%>
+            <!-- Edit Review Button -->
+            <button class="editReviewBtn" data-review-id="<%= r.review_id %>">EDIT</button>
+
+            <!-- Edit Form -->
+            <form class="editReviewForm" id="editForm<%= r.review_id %>" action="/inv/edit-review/<%= r.review_id %>" method="post" style="display: none;">
+              <textarea name="review_content" required><%= r.review_content %></textarea>
+              <br>
+              <input type="submit" class="submitButton" value="Update Review">
+              <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+            </form>
+          <% } %>
         </li>
       <% }) %>
     </ul>
@@ -43,7 +57,7 @@
 <% if (loggedin && accountData.account_type == "Client" && !hasReviewed) { %>
   <section class="review-form">
     <h2>Leave a Review</h2>
-    <form id="reviewForm" action="/inv/add-review" method="post">
+    <form class="reviewForm" action="/inv/add-review" method="post">
       <textarea name="review_content" value="<%= locals.review_content %>" required></textarea>
       <br>
       <input type="submit" class="submitButton" value="SUBMIT REVIEW">
@@ -51,3 +65,5 @@
     </form>
   </section>
 <% } %>
+
+<script src="../../js/review.js"></script>

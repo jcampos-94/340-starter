@@ -207,7 +207,6 @@ validate.submitReviewRules = () => {
     // valid name is required
     body("review_content")
       .trim()
-      .escape()
       .notEmpty()
       .withMessage("A review cannot be empty."),
   ];

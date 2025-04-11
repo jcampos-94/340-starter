@@ -67,4 +67,11 @@ router.post(
   dataValidate.checkReviewData,
   utilities.handleErrors(reviewController.postReview));
 
+// Route to post the edit review form
+router.post(
+  "/edit-review/:review_id",
+  dataValidate.submitReviewRules(),
+  dataValidate.checkReviewData,
+  utilities.handleErrors(reviewController.updateReview));
+
 module.exports = router;

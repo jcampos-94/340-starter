@@ -247,14 +247,18 @@ section ul li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 0;
+  gap: 10px;
 }
 
 #reviews li {
   width: 340px;
+  list-style-type: none;
 }
 
 .reviewContent {
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /******* Forms ***************/
@@ -345,11 +349,15 @@ form div {
 }
 
 /******* Review Forms ***************/
-#reviewForm {
+.reviewForm {
   margin-top: 0;
 }
 
-#reviewForm textarea {
+.editReviewForm {
+  margin-top: 20px;
+}
+
+.reviewForm textarea, .editReviewForm textarea {
   height: 150px;
 }
 
