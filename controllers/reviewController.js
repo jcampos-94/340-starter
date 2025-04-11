@@ -57,4 +57,47 @@ async function updateReview(req, res) {
   }
 }
 
-module.exports = { postReview, updateReview };
+/* ***************************
+ *  Process The Review Delete
+ * ************************** */
+async function deleteReview(req, res) {
+  const { inv_id } = req.body;
+  const { review_id } = req.params;
+  const account_id = res.locals.accountData.account_id;
+  const account_type = res.locals.accountData.account_type;
+  try {
+    // Check if the user is either an admin or the owner of the review
+    let canDelete = false;
+
+    if (account_type === "Admin") {
+      // Admin can delete any review
+      canDelete = true;
+    } else if (account_type === "Client") {
+      // Client can only delete their own review
+      const reviewOwner = await reviewModel.getReviewOwner(review_id);
+      if (reviewOwner && reviewOwner.account_id === account_id) {
+        canDelete = true;
+      }
+    }
+
+    if (canDelete) {
+      // Call a single delete function, as the ownership check has already been done
+      const deleteResult = await reviewModel.deleteReview(review_id);
+      if (deleteResult) {
+        req.flash("notice", "Review deleted successfully.");
+      } else {
+        req.flash("notice", "Review could not be deleted. Please try again.");
+      }
+    } else {
+      req.flash("notice", "You are not authorized to delete this review.");
+    }
+
+    res.redirect(`/inv/detail/${inv_id}`);
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    req.flash("notice", "Review could not be deleted. Please try again.");
+    res.redirect(`/inv/detail/${inv_id}`);
+  }
+}
+
+module.exports = { postReview, updateReview, deleteReview };

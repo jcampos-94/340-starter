@@ -361,6 +361,27 @@ form div {
   height: 150px;
 }
 
+.deleteReviewForm {
+  margin-top: 0;
+}
+
+.editReviewBtn, .deleteReviewBtn {
+  max-width: fit-content;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-family: Lato, sans-serif;
+  border-radius: 7px;
+}
+
+.editReviewBtn {
+  background: black;
+}
+
+.deleteReviewBtn {
+  background: red;
+}
 
 /******* Management ***************/
 .mgtAddLink {

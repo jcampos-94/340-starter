@@ -54,4 +54,33 @@ async function updateReview(review_id, account_id, review_content) {
   }
 }
 
-module.exports = { getReviewsByInvId, addReview, hasUserReviewed, updateReview };
+/* ***************************
+ *  Delete Review
+ * ************************** */
+async function deleteReview(review_id) {
+  try {
+    const sql = "DELETE FROM review WHERE review_id = $1 RETURNING *;";
+    const result = await pool.query(sql, [review_id]);
+    return result.rowCount > 0; // Return true if a row was deleted
+  } catch (error) {
+    throw new Error("Failed to delete review.");
+  }
+}
+
+/* ***************************
+ *  Check The Review Owner
+ * ************************** */
+async function getReviewOwner(review_id) {
+  try {
+    const sql = "SELECT account_id FROM review WHERE review_id = $1";
+    const result = await pool.query(sql, [review_id]);
+    if (result.rows.length > 0) {
+      return result.rows[0]; // Return the owner of the review
+    }
+    return null;
+  } catch (error) {
+    throw new Error("Failed to get review owner.");
+  }
+}
+
+module.exports = { getReviewsByInvId, addReview, hasUserReviewed, updateReview, deleteReview, getReviewOwner };
