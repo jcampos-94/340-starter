@@ -248,7 +248,8 @@ section ul li {
   flex-direction: row;
   flex-wrap: wrap;
   padding: 0;
-  gap: 10px;
+  column-gap: 25px;
+  row-gap: 10px;
 }
 
 #reviews li {
