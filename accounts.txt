@@ -1,14 +1,60 @@
+*** CLIENTS ***
+(They all have the same password for convenience)
+
 account_firstname: Basic
 account_lastname: Client
 account_email: basic@340.edu
 account_password: I@mABas1cCl!3nt
+
+account_firstname: Johnny
+account_lastname: Test
+account_email: test@340.edu
+account_password: I@mABas1cCl!3nt
+
+account_firstname: John
+account_lastname: Doe
+account_email: jhon@340.edu
+account_password: I@mABas1cCl!3nt
+
+account_firstname: Taichi
+account_lastname: Yagami
+account_email: tai@340.edu
+account_password: I@mABas1cCl!3nt
+
+account_firstname: Bell
+account_lastname: Cranell
+account_email: cranell@340.edu
+account_password: I@mABas1cCl!3nt
+
+
+*** EMPLOYEES ***
+(They all have the same password for convenience)
 
 account_firstname: Happy
 account_lastname: Employee
 account_email: happy@340.edu
 account_password: I@mAnEmpl0y33
 
+account_firstname: Tomiris
+account_lastname: Rangu
+account_email: tomiris@340.edu
+account_password: I@mAnEmpl0y33
+
+account_firstname: Senku
+account_lastname: Ishigami
+account_email: senku@340.edu
+account_password: I@mAnEmpl0y33
+
+
+*** ADMINS ***
+(They all have the same password for convenience)
+
 account_firstname: Manager
 account_lastname: User
 account_email: manager@340.edu
+account_password: I@mAnAdm!n1strat0r
+
+account_firstname: Zeus
+account_lastname: Olympia
+account_email: zeus@340.edu
 account_password: I@mAnAdm!n1strat0r
