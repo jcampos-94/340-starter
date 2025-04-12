@@ -2,6 +2,7 @@ const utilities = require("."); //Required for error handling
 const { body, validationResult } = require("express-validator");
 const validate = {};
 const invModel = require("../models/inventory-model");
+const reviewModel = require("../models/review-model");
 
 /*  **********************************
  *  Add New Classification Validation Rules

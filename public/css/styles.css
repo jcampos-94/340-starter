@@ -243,6 +243,25 @@ section ul li {
   padding: 1px;
 }
 
+#reviews ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
+  column-gap: 25px;
+  row-gap: 10px;
+}
+
+#reviews li {
+  width: 340px;
+  list-style-type: none;
+}
+
+.reviewContent {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 /******* Forms ***************/
 form {
   display: flex;
@@ -328,6 +347,41 @@ form div {
   font-size: 0.9em;
   color: rgb(53, 117, 173);
   font-weight: bold;
+}
+
+/******* Review Forms ***************/
+.reviewForm {
+  margin-top: 0;
+}
+
+.editReviewForm {
+  margin-top: 20px;
+}
+
+.reviewForm textarea, .editReviewForm textarea {
+  height: 150px;
+}
+
+.deleteReviewForm {
+  margin-top: 0;
+}
+
+.editReviewBtn, .deleteReviewBtn {
+  max-width: fit-content;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-family: Lato, sans-serif;
+  border-radius: 7px;
+}
+
+.editReviewBtn {
+  background: black;
+}
+
+.deleteReviewBtn {
+  background: red;
 }
 
 /******* Management ***************/

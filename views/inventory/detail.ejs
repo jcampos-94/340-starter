@@ -5,5 +5,85 @@
     res.redirect('/')
   } %>
 
+<%# Show A Message Block %>
+<%- messages() %>
+    
+<%# Errors Display %>
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <%# Build The Details Display %>
 <%- box %>
+
+<!-- Build The Reviews Display -->
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+
+  <% if (reviews && reviews.length > 0) { %>
+    <ul>
+      <% reviews.forEach(r => { %>
+        <li>
+          <strong><%= r.account_firstname %> <%= r.account_lastname %></strong>
+          <em>(<%= new Date(r.review_date).toLocaleString() %>)</em>
+          <p class="reviewContent"><%= r.review_content %></p>
+
+          <!-- If client -->
+          <% if (loggedin && accountData.account_type == "Client" && accountData.account_id == r.account_id) {%>
+            <!-- Edit and Delete Review Buttons -->
+            <button class="editReviewBtn" data-review-id="<%= r.review_id %>">EDIT</button>
+            <button class="deleteReviewBtn" data-review-id="<%= r.review_id %>">DELETE</button>
+
+            <!-- Edit Form -->
+            <form class="editReviewForm" id="editForm<%= r.review_id %>" action="/inv/edit-review/<%= r.review_id %>" method="post" style="display: none;">
+              <textarea name="review_content" required><%= r.review_content %></textarea>
+              <br>
+              <input type="submit" class="submitButton" value="UPDATE REVIEW">
+              <input type="hidden" name="inv_id" value="<%= inv_id %>">
+            </form>
+
+            <!-- Delete Form -->
+            <form class="deleteReviewForm" id="deleteForm<%= r.review_id %>" action="/inv/delete-review/<%= r.review_id %>" method="post" style="display: none;">
+              <div class="notice">Are you sure you wish to delete your review?</div><br>
+              <input type="submit" class="submitButton" value="DELETE REVIEW">
+              <input type="hidden" name="inv_id" value="<%= inv_id %>">
+            </form>
+          <% } %>
+          <!-- If Admin -->
+          <% if (loggedin && accountData.account_type == "Admin") {%>
+            <!-- Delete Review Button -->
+            <button class="deleteReviewBtn" data-review-id="<%= r.review_id %>">DELETE</button>
+
+            <!-- Delete Form -->
+            <form class="deleteReviewForm" id="deleteForm<%= r.review_id %>" action="/inv/delete-review/<%= r.review_id %>" method="post" style="display: none;">
+              <div class="notice">Are you sure you wish to delete this review?</div><br>
+              <input type="submit" class="submitButton" value="DELETE REVIEW">
+              <input type="hidden" name="inv_id" value="<%= inv_id %>">
+            </form>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No reviews yet for this vehicle.</p>
+  <% } %>
+</section>
+
+<!-- Build The Add Review Form -->
+<% if (loggedin && accountData.account_type == "Client" && !hasReviewed) { %>
+  <section class="review-form">
+    <h2>Leave a Review</h2>
+    <form class="reviewForm" action="/inv/add-review" method="post">
+      <textarea name="review_content" value="<%= locals.review_content %>" required></textarea>
+      <br>
+      <input type="submit" class="submitButton" value="SUBMIT REVIEW">
+      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+    </form>
+  </section>
+<% } %>
+
+<script src="../../js/review.js"></script>
